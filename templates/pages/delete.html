@@ -1,0 +1,130 @@
+<div class="page hidden" id="page-delete">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Delete</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-trash fa-fw"></i> Delete an object
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <form id="form-delete-object">
+                          <fieldset class="form-group">
+                              <label for="object-id">Object ID</label>
+                              <select class="form-control" name="object-id">
+                              </select>
+                              <p class= "help-block" for="object-id">Select an object</p>
+                          </fieldset>
+
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-object">
+                            Delete
+                          </button>
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="modal-delete-object" tabindex="-1" role="dialog" aria-labelledby="modal-title-delete-object">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="modal-title-delete-object">Are You Sure?</h4>
+                                </div>
+                                <div class="modal-body" id="modal-body-delete-object">
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+
+            <div class='col-lg-2 note'></div>
+            <!-- /.col-lg-2 -->
+
+        </div>
+        <!-- /.row -->
+
+
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-trash fa-fw"></i> Delete an object
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+
+                        <form id="form-delete-stream">
+                            <fieldset class="form-group">
+                                <label for="object-id">Object ID</label>
+                                <select class="form-control" name="object-id">
+                                </select>
+                                <p class= "help-block" for="object-id">Select an object</p>
+                            </fieldset>
+
+                            <div id="form-conditional-delete-stream">
+                              <fieldset class="form-group">
+                                  <label for="stream-id">Stream ID</label>
+                                  <select class="form-control" name="stream-id">
+                                  </select>
+                                  <p class= "help-block" for="stream-id">Select a stream</p>
+                              </fieldset>
+                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-stream">
+                                Delete
+                              </button>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal-delete-stream" tabindex="-1" role="dialog" aria-labelledby="modal-title-delete-stream">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="modal-title-delete-stream">Are You Sure?</h4>
+                                  </div>
+                                  <div class="modal-body" id="modal-body-delete-stream">
+
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+        </div>
+        <!-- /.row -->
+
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#page-delete -->

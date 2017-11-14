@@ -1,0 +1,118 @@
+<div class="page hidden" id="page-create">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Create</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-edit fa-fw"></i> Create a new object
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+
+                        <form id="form-create-object">
+                            <fieldset class="form-group">
+                                <label for="object-id">Object ID</label>
+                                <button type="button" class="btn btn-default btn-help btn-xs" data-toggle="collapse" data-target="#form-create-object-id-help" aria-expanded="false" aria-controls="form-create-object-id-help">
+                                  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                                </button>
+                                <input type="text" class="form-control" name="object-id" placeholder="A unique alphanumeric object id" required="true">
+                                <p id="form-create-object-id-help" class= "help-block collapse" for="object-id">Within a network, an object is identified by a unique alphanumeric ID. This ID may contain any number of letters ([A-Za-z]), digits ([0-9]), hyphens ("-"), and underscores ("_").
+                                Though not required, it is recommended that the ID begins with a letter. Other characters, such as hashtags, ("#"), colons (":"), and periods ("."), are not permitted and will be removed from the ID. Once an object has been created, the ID cannot be changed.</p>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label for="object-name">Object Name</label>
+                                <button type="button" class="btn btn-default btn-help btn-xs" data-toggle="collapse" data-target="#form-create-object-name-help" aria-expanded="false" aria-controls="form-create-object-name-help">
+                                  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                                </button>
+                                <input type="text" class="form-control" name="object-name" placeholder="A user-friendly name for the object" required="true">
+                                <p id="form-create-object-name-help" class= "help-block collapse" for="object-name">The name is a short and descriptive title for the object. The name serves as a simple and user-friendly alternative to the object ID for use in apps and other interfaces. While it is not required for the name to be unique within the network, it is recommended. The object name may be any string (ASCII/UTF-8).</p>
+                            </fieldset>
+
+                            <button type="submit" class="btn btn-success">Create</button>
+
+                            <div class="alert" style="margin-top:20px"></div>
+                        </form>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+
+            </div>
+            <!-- /.col-lg-8 -->
+
+            <div class='col-lg-2 note'></div>
+            <!-- /.col-lg-2 -->
+
+        </div>
+        <!-- /.row -->
+
+
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-edit fa-fw"></i> Add a stream to an object
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+
+                        <form id="form-create-stream">
+                            <fieldset class="form-group">
+                                <label for="object-id">Object ID</label>
+                                <select class="form-control" name="object-id">
+                                </select>
+                                <p class= "help-block" for="object-id">Select an object</p>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label for="stream-id">Stream ID</label>
+                                <button type="button" class="btn btn-default btn-help btn-xs" data-toggle="collapse" data-target="#form-create-stream-id-help" aria-expanded="false" aria-controls="form-create-stream-id-help">
+                                  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                                </button>
+                                <input type="text" class="form-control" name="stream-id" placeholder="A unique alphanumeric stream id" required="true">
+                                <p id="form-create-stream-id-help" class= "help-block collapse" for="stream-id">Within an object, a stream is identified by a unique alphanumeric ID. This ID may contain any number of letters ([A-Za-z]), digits ([0-9]), hyphens ("-"), and underscores ("_").
+                                Though not required, it is recommended that the ID begins with a letter. Other characters, such as hashtags, ("#"), colons (":"), and periods ("."), are not permitted and will be removed from the ID. Once a stream has been created, the ID cannot be changed.</p>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label for="stream-name">Stream Name</label>
+                                <button type="button" class="btn btn-default btn-help btn-xs" data-toggle="collapse" data-target="#form-create-stream-name-help" aria-expanded="false" aria-controls="form-create-stream-name-help">
+                                  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                                </button>
+                                <input type="text" class="form-control" name="stream-name" placeholder="A user-friendly name for the stream" required="true">
+                                <p id="form-create-stream-name-help" class= "help-block collapse" for="stream-name">The name is a short and descriptive title for the stream. The name serves as a simple and user-friendly alternative to the stream ID for use in apps and other interfaces. While it is not required for the name to be unique within the object, it is recommended. The stream name may be any string (ASCII/UTF-8).</p>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label for="points-type">Point Data Type</label>
+                                <select class="form-control" name="points-type">
+                                  <option value="i">Integer</option>
+                                  <option value="f">Float</option>
+                                  <option value="s">String</option>
+                                </select>
+                                <p class= "help-block" for="points-type">All points stored in the stream must have this type</p>
+                            </fieldset>
+                            <button type="submit" class="btn btn-success">Create</button>
+                        </form>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+
+            </div>
+            <!-- /.col-lg-8 -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#page-create -->
