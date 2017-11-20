@@ -1,4 +1,11 @@
-<div class="page hidden" id="page-create">
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'bit/navbar.html' %}
+{# include 'bit/announcement.html' #}
+
+<div class="page" id="page-create">
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -116,3 +123,5 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#page-create -->
+
+{% endblock %}

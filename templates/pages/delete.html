@@ -1,4 +1,11 @@
-<div class="page hidden" id="page-delete">
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'bit/navbar.html' %}
+{# include 'bit/announcement.html' #}
+
+<div class="page" id="page-delete">
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -7,10 +14,6 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-
-
-
-
 
         <div class="row">
             <div class="col-lg-8">
@@ -128,3 +131,4 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#page-delete -->
+{% endblock %}

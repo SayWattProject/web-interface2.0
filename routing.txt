@@ -1,0 +1,35 @@
+
+# Route index/dashboard html file
+@app.route('/', methods=['GET'])
+@app.route('/conversions', methods=['GET'])
+# Route static font files
+@app.route('/fonts/<path:filename>')
+# Route static files
+@app.route('/<path:filename>')
+# Route Network Requests
+@app.route('/networks/<network_id>', methods=['GET'])
+# Route Object Requests
+@app.route('/networks/'+config['network-id']+'/objects/<object_id>', methods=['GET','PUT','POST','DELETE'])
+# Route Object Requests
+@app.route('/networks/'+config['network-id']+'/objects/<object_id>/streams/<stream_id>', methods=['GET','PUT','POST','DELETE'])
+# Route Stream Requests
+@app.route('/networks/'+config['network-id']+'/objects/<object_id>/streams/<stream_id>/points', methods=['GET','POST'])
+
+
+/
+/conversions
+/energyusage
+/co2impact
+
+/settings
+  Create
+  View
+  Update
+  Delete
+
+/fonts/<path:filename>
+/<path:filename>
+/networks/<network_id>
+/networks/'+config['network-id']+'/objects/<object_id>
+/networks/'+config['network-id']+'/objects/<object_id>/streams/<stream_id>
+/networks/'+config['network-id']+'/objects/<object_id>/streams/<stream_id>/points

@@ -90,6 +90,69 @@ def root():
         data['enable_ws'] = True
     return render_template('index.html', data=data)
 
+@app.route('/dashboard', methods=['GET'])
+def dashboard():
+    # Return WebSocket or non-WebSocket Interface
+    data = {}
+    data['enable_ws'] = False
+    if config['enable_ws']:
+        data['enable_ws'] = True
+    return render_template('pages/dashboard.html', data=data)
+
+@app.route('/create', methods=['GET'])
+def create():
+    # Return WebSocket or non-WebSocket Interface
+    data = {}
+    data['enable_ws'] = False
+    if config['enable_ws']:
+        data['enable_ws'] = True
+    return render_template('pages/create.html', data=data)
+
+@app.route('/view', methods=['GET'])
+def view():
+    # Return WebSocket or non-WebSocket Interface
+    data = {}
+    data['enable_ws'] = False
+    if config['enable_ws']:
+        data['enable_ws'] = True
+    return render_template('pages/view.html', data=data)
+
+@app.route('/update', methods=['GET'])
+def update():
+    # Return WebSocket or non-WebSocket Interface
+    data = {}
+    data['enable_ws'] = False
+    if config['enable_ws']:
+        data['enable_ws'] = True
+    return render_template('pages/update.html', data=data)
+
+@app.route('/delete', methods=['GET'])
+def delete():
+    # Return WebSocket or non-WebSocket Interface
+    data = {}
+    data['enable_ws'] = False
+    if config['enable_ws']:
+        data['enable_ws'] = True
+    return render_template('pages/delete.html', data=data)
+
+@app.route('/conversions', methods=['GET'])
+def conversions():
+    # Return WebSocket or non-WebSocket Interface
+    data = {}
+    data['enable_ws'] = False
+    if config['enable_ws']:
+        data['enable_ws'] = True
+    return render_template('pages/conversions.html', data=data)
+
+@app.route('/energyusage', methods=['GET'])
+def energy_usage():
+    # Return WebSocket or non-WebSocket Interface
+    data = {}
+    data['enable_ws'] = False
+    if config['enable_ws']:
+        data['enable_ws'] = True
+    return render_template('pages/energyusage.html', data=data)
+
 # Route static font files
 @app.route('/fonts/<path:filename>')
 def send_font_file(filename):

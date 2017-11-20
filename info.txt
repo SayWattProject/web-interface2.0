@@ -1,0 +1,13 @@
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-automate-vm-deployment
+http://40.114.43.38/
+Hello World from host myVM!
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd
+
+azureuser@myVM:~$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+e736a3ad9a5d4121bae494df7072348d
+
+
+
+docker build --tag helloworldpython:$BUILD_NUMBER .
+docker stop helloworldpython && docker rm helloworldpython
+docker run --name helloworldpython -p 8000:8000 helloworldpython:$BUILD_NUMBER python /src/simpleapp.py -p 8000&
