@@ -85,6 +85,7 @@ def close_connection(exception):
 def root():
     # Return WebSocket or non-WebSocket Interface
     data = {}
+    data['isRoot'] = True;
     data['enable_ws'] = False
     if config['enable_ws']:
         data['enable_ws'] = True
@@ -94,6 +95,7 @@ def root():
 def dashboard():
     # Return WebSocket or non-WebSocket Interface
     data = {}
+    data['isDashboard'] = True
     data['enable_ws'] = False
     if config['enable_ws']:
         data['enable_ws'] = True
@@ -103,6 +105,7 @@ def dashboard():
 def create():
     # Return WebSocket or non-WebSocket Interface
     data = {}
+    data['isCreate'] = True
     data['enable_ws'] = False
     if config['enable_ws']:
         data['enable_ws'] = True
@@ -112,6 +115,7 @@ def create():
 def view():
     # Return WebSocket or non-WebSocket Interface
     data = {}
+    data['isView'] = True
     data['enable_ws'] = False
     if config['enable_ws']:
         data['enable_ws'] = True
@@ -121,6 +125,7 @@ def view():
 def update():
     # Return WebSocket or non-WebSocket Interface
     data = {}
+    data['isUpdate'] = True
     data['enable_ws'] = False
     if config['enable_ws']:
         data['enable_ws'] = True
@@ -130,6 +135,7 @@ def update():
 def delete():
     # Return WebSocket or non-WebSocket Interface
     data = {}
+    data['isDelete'] = True
     data['enable_ws'] = False
     if config['enable_ws']:
         data['enable_ws'] = True
@@ -139,6 +145,7 @@ def delete():
 def conversions():
     # Return WebSocket or non-WebSocket Interface
     data = {}
+    data['isConversions'] = True
     data['enable_ws'] = False
     if config['enable_ws']:
         data['enable_ws'] = True
@@ -148,6 +155,7 @@ def conversions():
 def energy_usage():
     # Return WebSocket or non-WebSocket Interface
     data = {}
+    data['isEnergyUsage'] = True
     data['enable_ws'] = False
     if config['enable_ws']:
         data['enable_ws'] = True

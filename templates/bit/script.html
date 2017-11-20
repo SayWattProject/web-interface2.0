@@ -31,3 +31,24 @@
 
 <!-- Extensions to Custom Theme JavaScript -->
 <script src="/js/extend_dashboard.js"></script>
+
+{% if data.isCreate %}
+<script>console.log('iscreate')</script>
+<script src="/js/custom-create.js"></script>
+
+{% elif data.isView %}
+<script>console.log('isview')</script>
+<script src="/js/custom-view.js"></script>
+
+{% elif data.isUpdate %}
+<script>console.log('isupdate')</script>
+<script src="/js/custom-update.js"></script>
+
+{% elif data.isDelete %}
+<script>console.log('delete')</script>
+<script src="/js/custom-delete.js"></script>
+
+{% else %}
+<script>console.log('nothing')</script>
+
+{% endif %}
