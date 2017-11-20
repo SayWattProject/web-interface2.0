@@ -14,6 +14,7 @@
 <script src="/js/highcharts.js"></script>
 <script src="/js/highcharts.exporting.js"></script>
 <script src="/js/highcharts.offline-exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 <!-- DateTimePicker Plugin JavaScript -->
 <script src="/js/jquery.datetimepicker.full.js"></script>
@@ -47,6 +48,14 @@
 {% elif data.isDelete %}
 <script>console.log('delete')</script>
 <script src="/js/custom-delete.js"></script>
+
+{% elif data.isCO2Impact %}
+<script>console.log('co2')</script>
+<script src="/js/custom-co2impact.js"></script>
+
+{% elif data.isEnergyUsage %}
+<script>console.log('energy')</script>
+<script src="/js/custom-energyusage.js"></script>
 
 {% else %}
 <script>console.log('nothing')</script>

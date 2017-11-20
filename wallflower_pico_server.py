@@ -161,6 +161,16 @@ def energy_usage():
         data['enable_ws'] = True
     return render_template('pages/energyusage.html', data=data)
 
+@app.route('/co2impact', methods=['GET'])
+def co2_impact():
+    # Return WebSocket or non-WebSocket Interface
+    data = {}
+    data['isCO2Impact'] = True
+    data['enable_ws'] = False
+    if config['enable_ws']:
+        data['enable_ws'] = True
+    return render_template('pages/co2impact.html', data=data)
+
 # Route static font files
 @app.route('/fonts/<path:filename>')
 def send_font_file(filename):
