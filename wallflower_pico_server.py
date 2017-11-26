@@ -54,19 +54,19 @@ try:
         config.update( wallflower_config )
 except:
     print( "Invalid wallflower_config.json file" )
-    
+
 # Add WebSocket port
 if config['enable_ws']:
     from twisted.internet import reactor
     from twisted.python import log
     from twisted.web.server import Site
-    
+
     from twisted.web.wsgi import WSGIResource
-    
+
     from autobahn.twisted.websocket import WebSocketServerFactory, \
         WebSocketServerProtocol, \
         listenWS
-    
+
     from autobahn.twisted.resource import WebSocketResource, WSGIRootResource
 
 
@@ -97,7 +97,7 @@ def send_font_file(filename):
     response = make_response(send_from_directory('static', filename))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-    
+
 # Route static files
 @app.route('/<path:filename>')
 def send_file(filename):
@@ -116,22 +116,22 @@ def networks(network_id):
             'network-code': 400
         }
         return jsonify(**response)
-        
+
     at = datetime.datetime.utcnow().isoformat() + 'Z'
-    
+
     response = {
         'network-id': config['network-id']
     }
-    
+
     if request.method == 'GET':
         # Read Network Details
         network_request = {
             'network-id': config['network-id']
         }
-        
+
         pico_db.do(network_request,'read','network',(config['network-id'],),at)
         response.update( pico_db.db_message )
-        
+
         return jsonify(**response)
 
 # Route Object Requests
@@ -139,23 +139,23 @@ def networks(network_id):
 def objects(object_id):
     pico_db = WallflowerDB()
     pico_db.database = config['database']
-    
+
     at = datetime.datetime.utcnow().isoformat() + 'Z'
 
     object_request = {
         'object-id': object_id
     }
-    
+
     response = {
         'network-id': config['network-id'],
         'object-id': object_id
     }
-    
+
     if request.method == 'GET': # Read
         # Read Object Details
         pico_db.do(object_request,'read','object',(config['network-id'],object_id),at)
         response.update( pico_db.db_message )
-        
+
     elif request.method == 'PUT': # Create
         # Create Object
         object_request['object-details'] = {
@@ -167,13 +167,16 @@ def objects(object_id):
 
         pico_db.do(object_request,'create','object',(config['network-id'],object_id),at)
         response.update( pico_db.db_message )
-        
+        #added code say-watt-project
+        synctoclient_object('PUT', object_id, object_id)
+        #end added
+
         # Broadcast response over websocket
         if config['enable_ws'] and response['object-code'] == 201:
             response['response-type'] = 'object-create'
             factory.broadcast( json.dumps(response) )
-        
-    elif request.method == 'POST': 
+
+    elif request.method == 'POST':
         # Update Object Details
         object_request['object-details'] = {
             'object-name': object_id
@@ -181,24 +184,32 @@ def objects(object_id):
         object_name = request.args.get('object-name',None,type=str)
         if object_name is not None:
             object_request['object-details']['object-name'] = object_name
-            
+
         pico_db.do(object_request,'update','object',(config['network-id'],object_id),at)
         response.update( pico_db.db_message )
-        
+
+        #added code say-watt-project
+        synctoclient_object('POST', object_id, object_name)
+        #end added
+
         # Broadcast response over websocket
         if config['enable_ws'] and response['object-code'] == 200:
             response['response-type'] = 'object-update'
             factory.broadcast( json.dumps(response) )
-        
-    elif request.method == 'DELETE': 
+
+    elif request.method == 'DELETE':
         # Delete Object
         pico_db.do(object_request,'delete','object',(config['network-id'],object_id),at)
         response.update( pico_db.db_message )
-        
+
+        #added code say-watt-project
+        synctoclient_object('DELETE', object_id, object_id)
+        #end added
+
         if config['enable_ws'] and response['object-code'] == 200:
             response['response-type'] = 'object-delete'
             factory.broadcast( json.dumps(response) )
-        
+
     return jsonify(**response)
 
 
@@ -207,24 +218,24 @@ def objects(object_id):
 def streams(object_id,stream_id):
     pico_db = WallflowerDB()
     pico_db.database = config['database']
-    
+
     at = datetime.datetime.utcnow().isoformat() + 'Z'
-    
+
     stream_request = {
         'stream-id': stream_id
     }
-    
+
     response = {
         'network-id': config['network-id'],
         'object-id': object_id,
         'stream-id': stream_id
     }
-    
+
     if request.method == 'GET': # Read
         # Read Object Details
         pico_db.do(stream_request,'read','stream',(config['network-id'],object_id,stream_id),at)
         response.update( pico_db.db_message )
-        
+
     elif request.method == 'PUT': # Create
         # Create Stream
         stream_request['stream-details'] = {
@@ -238,19 +249,23 @@ def streams(object_id,stream_id):
         stream_name = request.args.get('stream-name',None,type=str)
         if stream_name is not None:
             stream_request['stream-details']['stream-name'] = stream_name
-            
+
         points_type = request.args.get('points-type',None,type=str)
         if stream_name is not None and points_type in ['i','f','s']:
             stream_request['points-details']['points-type'] = points_type
-        
+
         pico_db.do(stream_request,'create','stream',(config['network-id'],object_id,stream_id),at)
         response.update( pico_db.db_message )
-        
+
+        #added code say-watt-project
+        synctoclient_stream('PUT', object_id, stream_id, stream_id, points_type)
+        #end added
+
         if config['enable_ws'] and response['stream-code'] == 201:
             response['response-type'] = 'stream-create'
             factory.broadcast( json.dumps(response) )
-        
-    elif request.method == 'POST': 
+
+    elif request.method == 'POST':
         # Update Object Details
         stream_request['stream-details'] = {
             'object-name': object_id
@@ -261,22 +276,30 @@ def streams(object_id,stream_id):
 
         pico_db.do(stream_request,'update','stream',(config['network-id'],object_id,stream_id),at)
         response.update( pico_db.db_message )
-        
+
+        #added code say-watt-project
+        synctoclient_stream('POST', object_id, stream_id, stream_name, points_type)
+        #end added
+
         if config['enable_ws'] and response['stream-code'] == 200:
             response['response-type'] = 'stream-update'
             factory.broadcast( json.dumps(response) )
-        
-    elif request.method == 'DELETE': 
+
+    elif request.method == 'DELETE':
         # Delete Object
         pico_db.do(stream_request,'delete','stream',(config['network-id'],object_id,stream_id),at)
         response.update( pico_db.db_message )
 
+        #added code say-watt-project
+        synctoclient_stream('DELETE', object_id, stream_id, stream_id, None)
+        #end added
+
         if config['enable_ws'] and response['stream-code'] == 200:
             response['response-type'] = 'stream-delete'
             factory.broadcast( json.dumps(response) )
-        
+
     return jsonify(**response)
-    
+
 
 
 
@@ -285,9 +308,9 @@ def streams(object_id,stream_id):
 def points(object_id,stream_id):
     pico_db = WallflowerDB()
     pico_db.database = config['database']
-    
+
     at = datetime.datetime.utcnow().isoformat() + 'Z'
-    
+
     points_request = {
         'stream-id': stream_id,
         'points': []
@@ -298,7 +321,7 @@ def points(object_id,stream_id):
         'object-id': object_id,
         'stream-id': stream_id
     }
-    
+
     if request.method == 'GET':
         # Read Points (Use Search Instead Of Read)
         # Max number of data points (Optional)
@@ -307,7 +330,7 @@ def points(object_id,stream_id):
         start = request.args.get('points-start',None,type=str)
         # End date/time (Optional)
         end = request.args.get('points-end',None,type=str)
-        
+
         # Points Search Input
         point_search = {}
         if limit is not None and isinstance(limit,int):
@@ -316,12 +339,12 @@ def points(object_id,stream_id):
             point_search['start'] = start
         if end is not None and isinstance(end,str):
             point_search['end'] = end
-        
+
         points_request['points'] = point_search
-        
+
         pico_db.do(points_request,'search','points',(config['network-id'],object_id,stream_id),at)
         response.update( pico_db.db_message )
-        
+
     elif request.method == 'POST':
         # Update Points
         # Point value (Required)
@@ -330,7 +353,7 @@ def points(object_id,stream_id):
             response['points-code'] = 406
             response['points-message'] = 'No value received'
             return jsonify(**response)
-            
+
         # At date/time (Optional)
         point_at = request.args.get('points-at',at,type=str)
         try:
@@ -339,21 +362,25 @@ def points(object_id,stream_id):
             response['points-code'] = 400
             response['points-message'] = 'Invalid timestamp'
             return jsonify(**response)
-        
+
         points = [{
             'value': point_value,
             'at': point_at
         }]
-        
+
         points_request['points'] = points
-        
+
         pico_db.do(points_request,'update','points',(config['network-id'],object_id,stream_id),at)
         response.update( pico_db.db_message )
-        
+
+        #say-watt
+        synctoclient_point('POST', object_id, stream_id, point_value,point_at)
+        #end added
+
         if config['enable_ws'] and response['points-code'] == 200:
             response['response-type'] = 'points-update'
             factory.broadcast( json.dumps(response) )
-        
+
     return jsonify(**response)
 
 
@@ -370,40 +397,40 @@ def not_found(error):
 if config['enable_ws']:
     # Protocol for websocket broadcast
     class BroadcastServerProtocol(WebSocketServerProtocol):
-    
+
         def onOpen(self):
             self.factory.register(self)
-    
+
         def onMessage(self, payload, isBinary):
             # Ignore all incoming messages
             pass
-    
+
         def connectionLost(self, reason):
             WebSocketServerProtocol.connectionLost(self, reason)
             self.factory.unregister(self)
-    
+
     # Twisted factory for web socket broadcast
     class BroadcastServerFactory(WebSocketServerFactory):
-    
+
         """
         Simple broadcast server broadcasting any message it receives to all
         currently connected clients.
         """
-    
+
         def __init__(self, url):
             WebSocketServerFactory.__init__(self, url)
             self.clients = []
-    
+
         def register(self, client):
             if client not in self.clients:
                 print("Registered client {}".format(client.peer))
                 self.clients.append(client)
-    
+
         def unregister(self, client):
             if client in self.clients:
                 print("Unregistered client {}".format(client.peer))
                 self.clients.remove(client)
-    
+
         def broadcast(self, msg):
             print("Broadcasting message '{}' ..".format(msg))
             for c in self.clients:
@@ -415,14 +442,14 @@ if config['enable_ws']:
 if __name__ == '__main__':
     # Check if the network exists and create, if necessary
     at = datetime.datetime.utcnow().isoformat() + 'Z'
-    
+
     with app.app_context():
         pico_db = WallflowerDB()
         pico_db.database = config['database']
-        
+
         # Create wcc_networks table, if necessary
         pico_db.execute( 'CREATE TABLE IF NOT EXISTS wcc_networks (timestamp date, network_id text, network_record text)' )
-        
+
         # Check if default network exists
         exists = pico_db.loadNetworkRecord(config['network-id'])
         if not exists:
@@ -434,30 +461,30 @@ if __name__ == '__main__':
                 }
             }
             pico_db.do(network_request,'create','network',(config['network-id'],),at)
-    
+
     # Add WebSocket
     if config['enable_ws']:
         # Setup the Twisted server with Flask app
         log.startLogging(sys.stdout)
-        
+
         # Set factory and begin listening to ws
         factory = BroadcastServerFactory(u"ws://0.0.0.0:"+str(config["ws_port"])+"/network/local")
         factory.protocol = BroadcastServerProtocol
         listenWS(factory)
         wsResource = WebSocketResource(factory)
-        
+
         # Create a Twisted WSGI resource for Flask app
         wsgiResource = WSGIResource(reactor, reactor.getThreadPool(), app)
-        
+
         # Create a root resource serving everything via WSGI/Flask, but
         # the path "/ws" served by our WebSocket
         rootResource = WSGIRootResource(wsgiResource, {'ws': wsResource})
-        
+
         # create a Twisted Web Site and run everything
         site = Site(rootResource)
         reactor.listenTCP(config["http_port"], site)
 
-        # Start the Twisted reactor 
+        # Start the Twisted reactor
         # TODO: Allow for shutdown without ending/restarting python instance
         reactor.run()
     else:
