@@ -203,7 +203,7 @@ def objects(object_id):
         response.update( pico_db.db_message )
 
         #added code say-watt-project
-        synctoclient_object('DELETE', object_id, object_id)
+        #synctoclient_object('DELETE', object_id, object_id)
         #end added
 
         if config['enable_ws'] and response['object-code'] == 200:
@@ -291,7 +291,7 @@ def streams(object_id,stream_id):
         response.update( pico_db.db_message )
 
         #added code say-watt-project
-        synctoclient_stream('DELETE', object_id, stream_id, stream_id, None)
+        #synctoclient_stream('DELETE', object_id, stream_id, stream_id, None)
         #end added
 
         if config['enable_ws'] and response['stream-code'] == 200:
