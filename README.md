@@ -44,7 +44,6 @@ Components which connect to the server via the API are not affected by the AGPL.
 
 In summary, any modifications to the Wallflower.Pico source code must be distributed according to the terms of the AGPL v3. Any code that connects to a Wallflower.cc server via an API is recognized as a seperate work (not a derivative work) irrespective of where it runs. Lastly, you are free to modify the HTML, JS, and CSS code of the web interface without restrictions, though we would appreciate you sharing what you have created.
 
-
 [wcc]: <http://wallflower.cc>
 [wccdemo]: <http://wallflower.cc/pico-demo>
 [mit]: <https://opensource.org/licenses/MIT>
