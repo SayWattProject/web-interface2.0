@@ -349,6 +349,8 @@ def points(object_id,stream_id):
         # Update Points
         # Point value (Required)
         point_value = request.args.get('points-value',None)
+        print request.args
+        print request.args.get('points-at',None)
         if point_value is None:
             response['points-code'] = 406
             response['points-message'] = 'No value received'

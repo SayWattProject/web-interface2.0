@@ -82,8 +82,8 @@ function getPoints( the_network_id, the_object_id, the_stream_id, callback ){
 			if( response['points-code'] == 200 ){
 				var num_points = response.points.length
 				var most_recent_value = response.points[0].value
-				console.log("Most recent value: "+most_recent_value);
-				console.log("Number of points retrieved: "+num_points);
+				//console.log("Most recent value: "+most_recent_value);
+				//console.log("Number of points retrieved: "+num_points);
 				callback( response.points );
 			}
 		},
@@ -411,7 +411,7 @@ function energyusagecomponentstream(container_name){
 	var plotCalls = 0;
 	var plotTimer = setInterval( function(){
 		getPoints('local','arduino-temp','temp-stream', function(points){
-			console.log( "The points request was successful!" );
+			//console.log( "The points request was successful!" );
 			loadPlot( points, container_name );
 		});
 		if( plotCalls > 20 ){
@@ -1015,3 +1015,138 @@ $('#containerEnergyPrices').highcharts(options);
 }
 
 loadenergypriceschart()
+
+
+console.log("Adding toggle functionality");
+registerHandlers();
+
+function registerHandlers() {
+// https://stackoverflow.com/questions/9180087/how-to-handle-change-of-checkbox-using-jquery
+
+$('#btn-1').click(function () {
+    $('#actuate-toggle-device-01').prop('checked', !$('#actuate-toggle-device-01').is(':checked'));
+});
+
+$('#btn-2').click(function () {
+    var chk1 = $('#actuate-toggle-device-01').is(':checked');
+    console.log("Value : " + chk1);
+});
+
+$('input[type="checkbox"]').change(function () {
+    var name = $(this).val();
+    var check = $(this).prop('checked');
+    console.log("Change: " + name + " to " + check);
+		if (check){
+			//clicked to true >> turn on device
+			console.log('hello brian set to true');
+		}else{
+			console.log('hello brian set to false');
+			//clicked to false >> turn off device
+			network_id = "local"
+			object_id = "OBJ-PSWITCH-TAIL"
+			stream_id = "actuate-pswitch-tail"
+			// Send the request to the WCC server
+			url = '/networks/'+network_id+'/objects/'+ object_id +'/streams/'+ stream_id +'/points'
+			$.post(url,
+	    {
+	        'points-at': "2017-10-18T07:32:29.243313Z",
+	        'points-value': 1
+	    },
+	    function(data, status){
+				message = '';
+				for (i = 0; i < Object.keys(data).length; i++) {
+				    message += Object.keys(data)[i] + ': ' + data[Object.keys(data)[i]] + ',';
+				}
+        alert("Data: " + message + "\nStatus: " + status);
+	    });
+			$.ajax({
+			  url: 'http://127.0.0.1:5000'+url,
+			  type: "POST",
+			  dataType:'json',
+			  data: {
+		        'points-at': "2017-10-18T07:32:29.243313Z",
+		        'points-value': 1
+		    },
+			  success: function(data){
+			      console.log(data);
+			  }
+			});
+			/*
+			// Gather the data
+			// and remove undefined keys(buttons)
+			network_id = "local"
+			object_id = "OBJ-PSWITCH-TAIL"
+			stream_id = "actuate-pswitch-tail"
+			// Send the request to the WCC server
+			$.ajax({
+				url : '/networks/'+network_id+'/objects/'+ object_id +'/streams/'+ stream_id +'/points',
+				type: "put",
+				cache: false,
+				query = {
+			        'points-value': click,
+			        'points-at':
+			    },
+				success : function(response){
+					var this_form = $("input[type='checkbox']");
+					var message = $('<div class="alert" style="margin-top:20px"></div>');
+					var url_array = this.url.split('?');
+					var url = url_array[0]; // URL without '_' parameter
+					var req = $('<pre class="language-"><b>GET</b> '+url+'</pre>');
+
+					if( response['stream-code'] == 200 ){
+						// Start Success message
+						message.addClass('alert-success');
+						message.append("<h4>Success!</h4>");
+						req.css({ 'color': '#3c763d' });
+					}else{
+						// Start Danger message
+						message.addClass('alert-danger');
+						message.append("<h4>Error</h4>");
+						req.css({ 'color': '#a94442' });
+					}
+
+					// Add Request message
+					message.append('<p>Request</p>');
+					message.append( req );
+
+					// Add Response message
+					message.append('<p>Response</p>');
+					var json_code = $('<pre class="language-javascript"><code class="language-javascript">'+JSON.stringify(response,null,4)+'</code></pre>');
+					message.append( json_code );
+
+					// Highlight JSON with Prism
+					Prism.highlightElement(json_code[0]);
+
+					// Add/Replace Alert message
+					if ( $('.alert', this_form).length ) {
+						$('.alert', this_form).replaceWith( message );
+					}else{
+						this_form.append(message);
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown){
+					var this_form = $("input[type='checkbox']");
+
+					// Add Error message
+					var message = $('<div class="alert" style="margin-top:20px"></div>');
+					message.addClass('alert-danger');
+					message.append("<h4>Error</h4>");
+					message.append("<p>Status Code: "+jqXHR.status+"</p>");
+					message.append("<p>Status Text: "+textStatus+"</p>");
+
+					// Add/Replace Alert message
+					if ( $('.alert', this_form).length ) {
+						$('.alert', this_form).replaceWith( message );
+					}else{
+						this_form.append(message);
+					}
+				}
+			});
+			*/
+		}
+});
+
+$('input[type="checkbox"]').bind('click', function(){
+	alert("OK");
+})
+}

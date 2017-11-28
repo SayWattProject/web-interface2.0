@@ -35,8 +35,8 @@ import time
 import datetime
 
 def localPutObject(object_id, object_name):
-    #base = 'http://127.0.0.1:5000'
-    base = 'http://13.92.90.127:5000'
+    base = 'http://127.0.0.1:5000'
+    #base = 'http://13.92.90.127:5000'
     network_id = 'local'
     header = {}
 
@@ -53,8 +53,8 @@ def localPutObject(object_id, object_name):
         print( response.text )
 
 def localPutStream(object_id,stream_id,stream_name,stream_data_type):
-    #base = 'http://127.0.0.1:5000'
-    base = 'http://13.92.90.127:5000'
+    base = 'http://127.0.0.1:5000'
+    #base = 'http://13.92.90.127:5000'
     network_id = 'local'
     header = {}
     points_type = stream_data_type[0] #[i]nteger, [f]loat, [s]tring
