@@ -168,7 +168,7 @@ def objects(object_id):
         pico_db.do(object_request,'create','object',(config['network-id'],object_id),at)
         response.update( pico_db.db_message )
         #added code say-watt-project
-        synctoclient_object('PUT', object_id, object_id)
+        #synctoclient_object('PUT', object_id, object_id)
         #end added
 
         # Broadcast response over websocket
@@ -189,7 +189,7 @@ def objects(object_id):
         response.update( pico_db.db_message )
 
         #added code say-watt-project
-        synctoclient_object('POST', object_id, object_name)
+        #synctoclient_object('POST', object_id, object_name)
         #end added
 
         # Broadcast response over websocket
@@ -258,7 +258,7 @@ def streams(object_id,stream_id):
         response.update( pico_db.db_message )
 
         #added code say-watt-project
-        synctoclient_stream('PUT', object_id, stream_id, stream_id, points_type)
+        #synctoclient_stream('PUT', object_id, stream_id, stream_id, points_type)
         #end added
 
         if config['enable_ws'] and response['stream-code'] == 201:
@@ -278,7 +278,7 @@ def streams(object_id,stream_id):
         response.update( pico_db.db_message )
 
         #added code say-watt-project
-        synctoclient_stream('POST', object_id, stream_id, stream_name, points_type)
+        #synctoclient_stream('POST', object_id, stream_id, stream_name, points_type)
         #end added
 
         if config['enable_ws'] and response['stream-code'] == 200:
@@ -374,7 +374,7 @@ def points(object_id,stream_id):
         response.update( pico_db.db_message )
 
         #say-watt
-        synctoclient_point('POST', object_id, stream_id, point_value,point_at)
+        #synctoclient_point('POST', object_id, stream_id, point_value,point_at)
         #end added
 
         if config['enable_ws'] and response['points-code'] == 200:

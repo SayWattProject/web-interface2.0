@@ -3,10 +3,17 @@ import json
 import random
 import time
 import datetime
+#client local
+#base = 'http://0.0.0.0:5000'
+#base = 'http://localhost:5000'
+#client remote
+#base = 'http://13.92.90.127:5000'
+#server local
+#base = 'http://0.0.0.0:8000'
+#server remote
+#base = 'http://13.92.90.127:8000'
 
 def localPutObject(object_id, object_name):
-    #base = 'http://13.92.90.127:5000'
-    base = 'http://13.92.90.127:8000'
     network_id = 'local'
     header = {}
 
@@ -23,8 +30,6 @@ def localPutObject(object_id, object_name):
         print( response.text )
 
 def localPostObject(object_id, object_name):
-    #base = 'http://13.92.90.127:5000'
-    base = 'http://13.92.90.127:8000'
     network_id = 'local'
     header = {}
 
@@ -41,8 +46,6 @@ def localPostObject(object_id, object_name):
         print( response.text )
 
 def localDeleteObject(object_id):
-    #base = 'http://13.92.90.127:5000'
-    base = 'http://13.92.90.127:8000'
     network_id = 'local'
     header = {}
 
@@ -58,8 +61,6 @@ def localDeleteObject(object_id):
         print( response.text )
 
 def localPutStream(object_id,stream_id,stream_name,stream_data_type):
-    #base = 'http://13.92.90.127:5000'
-    base = 'http://13.92.90.127:8000'
     network_id = 'local'
     header = {}
     points_type = stream_data_type[0] #[i]nteger, [f]loat, [s]tring
@@ -77,8 +78,6 @@ def localPutStream(object_id,stream_id,stream_name,stream_data_type):
         print( response.text )
 
 def localPostStream(object_id,stream_id,stream_name,stream_data_type):
-    #base = 'http://13.92.90.127:5000'
-    base = 'http://13.92.90.127:8000'
     network_id = 'local'
     header = {}
     points_type = stream_data_type[0] #[i]nteger, [f]loat, [s]tring
@@ -96,8 +95,6 @@ def localPostStream(object_id,stream_id,stream_name,stream_data_type):
         print( response.text )
 
 def localDeleteStream(object_id,stream_id,stream_name):
-    #base = 'http://13.92.90.127:5000'
-    base = 'http://13.92.90.127:8000'
     network_id = 'local'
     header = {}
     query = {
@@ -113,8 +110,6 @@ def localDeleteStream(object_id,stream_id,stream_name):
         print( response.text )
 
 def localPostPoints(object_id, stream_id, point_value,point_at):
-    #base = 'http://13.92.90.127:5000'
-    base = 'http://13.92.90.127:8000'
     network_id = 'local'
     header = {}
     query = {
@@ -130,11 +125,6 @@ def localPostPoints(object_id, stream_id, point_value,point_at):
     else:
         print('Create points: error')
         print( response.text )
-
-
-
-
-
 
 def synctoclient_object(request_method, object_id, object_name):
     if request_method == 'PUT':
