@@ -1047,6 +1047,7 @@ $('input[type="checkbox"]').change(function () {
 			stream_id = "actuate-pswitch-tail"
 			// Send the request to the WCC server
 			url = '/networks/'+network_id+'/objects/'+ object_id +'/streams/'+ stream_id +'/points'
+/*
 			$.post(url,
 	    {
 	        'points-at': "2017-10-18T07:32:29.243313Z",
@@ -1057,10 +1058,12 @@ $('input[type="checkbox"]').change(function () {
 				for (i = 0; i < Object.keys(data).length; i++) {
 				    message += Object.keys(data)[i] + ': ' + data[Object.keys(data)[i]] + ',';
 				}
-        alert("Data: " + message + "\nStatus: " + status);
+				console.log(message);
+        //alert("Data: " + message + "\nStatus: " + status);
 	    });
+			*/
 			$.ajax({
-			  url: 'http://127.0.0.1:5000'+url,
+			  url: url,
 			  type: "POST",
 			  dataType:'json',
 			  data: {
@@ -1068,7 +1071,11 @@ $('input[type="checkbox"]').change(function () {
 		        'points-value': 1
 		    },
 			  success: function(data){
-			      console.log(data);
+					message = '';
+					for (i = 0; i < Object.keys(data).length; i++) {
+							message += Object.keys(data)[i] + ': ' + data[Object.keys(data)[i]] + ',';
+					}
+			    console.log(message);
 			  }
 			});
 			/*

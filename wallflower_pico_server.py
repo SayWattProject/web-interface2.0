@@ -321,7 +321,7 @@ def points(object_id,stream_id):
         'object-id': object_id,
         'stream-id': stream_id
     }
-
+    print request
     if request.method == 'GET':
         # Read Points (Use Search Instead Of Read)
         # Max number of data points (Optional)
