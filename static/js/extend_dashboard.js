@@ -436,7 +436,7 @@ function energyusagecomponentstream(container_name,obj_name,stream_name){
 }
 
 //energyusagedashboard() //load master detail
-//energyusagecomponentstream('containerEnergyUsageComposite','OBJ-CURR-SENSORS','data-curr-sens-all')
+energyusagecomponentstream('containerEnergyUsageComposite','OBJ-CURR-SENSORS','data-curr-sens-three')
 energyusagecomponentstream('containerEnergyUsageComponent1','OBJ-CURR-SENSORS','data-curr-sens-one') //load one stream
 energyusagecomponentstream('containerEnergyUsageComponent2','OBJ-CURR-SENSORS','data-curr-sens-two') //load another stream
 energyusagecomponentstream('containerEnergyUsageComponent3','OBJ-CURR-SENSORS','data-curr-sens-three') //load another stream
@@ -544,7 +544,7 @@ function loadgoalschart(){
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br>',
-        pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+        pointFormat: '{point.y:.2f} kWh'
     },
 
     plotOptions: {
