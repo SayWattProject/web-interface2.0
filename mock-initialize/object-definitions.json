@@ -5,12 +5,12 @@
 			"streams": [{
 					"stream-id": "data-tp-link",
 					"stream-display-name": "Data: TP Link",
-					"stream-data-type": "integer_float_string"
+					"stream-data-type": "float"
 				},
 				{
 					"stream-id": "actuate-tp-link",
 					"stream-display-name": "Actuate: TP Link",
-					"stream-data-type": "integer_float_string"
+					"stream-data-type": "integer"
 				}
 			]
 		},
@@ -20,22 +20,22 @@
 			"streams": [{
 					"stream-id": "data-curr-sens-one",
 					"stream-display-name": "Data: Current Sensor One",
-					"stream-data-type": "integer_float_string"
+					"stream-data-type": "float"
 				},
 				{
 					"stream-id": "data-curr-sens-two",
 					"stream-display-name": "Data: Current Sensor Two",
-					"stream-data-type": "integer_float_string"
+					"stream-data-type": "float"
 				},
 				{
 					"stream-id": "data-curr-sens-three",
 					"stream-display-name": "Data: Current Sensor Three",
-					"stream-data-type": "integer_float_string"
+					"stream-data-type": "float"
 				},
 				{
 					"stream-id": "data-curr-sens-all",
 					"stream-display-name": "Data: Current Sensor All",
-					"stream-data-type": "integer_float_string"
+					"stream-data-type": "float"
 				}
 			]
 		},
@@ -45,12 +45,12 @@
 			"streams": [{
 					"stream-id": "data-pswitch-tail",
 					"stream-display-name": "Data: Power Switch Tail",
-					"stream-data-type": "integer_float_string"
+					"stream-data-type": "float"
 				},
 				{
 					"stream-id": "actuate-pswitch-tail",
 					"stream-display-name": "Actuate: Power Switch Tail",
-					"stream-data-type": "integer_float_string"
+					"stream-data-type": "integer"
 				}
 			]
 		}

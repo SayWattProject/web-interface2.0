@@ -436,7 +436,7 @@ function energyusagecomponentstream(container_name,obj_name,stream_name){
 }
 
 //energyusagedashboard() //load master detail
-energyusagecomponentstream('containerEnergyUsageComposite','OBJ-CURR-SENSORS','data-curr-sens-all')
+//energyusagecomponentstream('containerEnergyUsageComposite','OBJ-CURR-SENSORS','data-curr-sens-all')
 energyusagecomponentstream('containerEnergyUsageComponent1','OBJ-CURR-SENSORS','data-curr-sens-one') //load one stream
 energyusagecomponentstream('containerEnergyUsageComponent2','OBJ-CURR-SENSORS','data-curr-sens-two') //load another stream
 energyusagecomponentstream('containerEnergyUsageComponent3','OBJ-CURR-SENSORS','data-curr-sens-three') //load another stream
@@ -520,105 +520,67 @@ loadco2chart()
 function loadgoalschart(){
 	Highcharts.chart('containerGoals', {
     chart: {
-        zoomType: 'xy'
+        type: 'spline'
     },
     title: {
-        text: 'Average Monthly Weather Data for Tokyo'
+        text: 'Energy Usage in the Past Week'
     },
     subtitle: {
-        text: 'Source: WorldClimate.com'
+        text: 'Source: data-curr-sensors-all'
     },
     xAxis: [{
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        crosshair: true
+        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+            'Sun'],
+        crosshair: true,
+        title: {
+            text: 'Day of the Week'
+        }
     }],
-    yAxis: [{ // Primary yAxis
-        labels: {
-            format: '{value} W',
-            style: {
-                color: Highcharts.getOptions().colors[2]
-            }
-        },
+    yAxis: {
         title: {
-            text: 'Temperature',
-            style: {
-                color: Highcharts.getOptions().colors[2]
-            }
+            text: 'Energy Usage (kWh)'
         },
-        opposite: true
+        min: 0
+    },
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br>',
+        pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+    },
 
-    }, { // Secondary yAxis
-        gridLineWidth: 0,
-        title: {
-            text: 'Rainfall',
-            style: {
-                color: Highcharts.getOptions().colors[0]
-            }
-        },
-        labels: {
-            format: '{value} mm',
-            style: {
-                color: Highcharts.getOptions().colors[0]
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
             }
         }
+    },
 
-    }, { // Tertiary yAxis
-        gridLineWidth: 0,
-        title: {
-            text: 'Sea-Level Pressure',
-            style: {
-                color: Highcharts.getOptions().colors[1]
-            }
-        },
-        labels: {
-            format: '{value} mb',
-            style: {
-                color: Highcharts.getOptions().colors[1]
-            }
-        },
-        opposite: true
-    }],
-    tooltip: {
-        shared: true
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'left',
-        x: 80,
-        verticalAlign: 'top',
-        y: 55,
-        floating: true,
-        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-    },
     series: [{
-        name: 'Rainfall',
+        name: 'Energy Used',
         type: 'column',
-        yAxis: 1,
-        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+        data: [900, 710.5, 260],
         tooltip: {
-            valueSuffix: ' mm'
+            valueSuffix: ' kWh'
         }
 
     }, {
-        name: 'Sea-Level Pressure',
+        name: '10% Reduction Goal',
         type: 'spline',
-        yAxis: 2,
-        data: [1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6, 1010.2, 1013.1, 1016.9, 1018.2, 1016.7],
+        data: [806, 806, 805.9, 805.5, 802.3, 709.5, 709.6],
         marker: {
             enabled: false
         },
         dashStyle: 'shortdot',
         tooltip: {
-            valueSuffix: ' mb'
+            valueSuffix: ' kWh'
         }
 
     }, {
-        name: 'Temperature',
+        name: '3Week Moving Average',
         type: 'spline',
-        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+        data: [1016, 1016, 1015.9, 1015.5, 1012.3, 809.5, 809.6],
         tooltip: {
-            valueSuffix: ' °C'
+            valueSuffix: ' kWh'
         }
     }]
 });

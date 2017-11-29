@@ -726,58 +726,98 @@
                 </div>
                 <!-- /.row -->
 
+
                   <div class="row">
-                      <div class="panel panel-default">
-                          <div class="panel-heading">
-                              Striped Rows
-                          </div>
-                          <!-- /.panel-heading -->
-                          <div class="panel-body">
-                              <div class="table-responsive">
-                                  <table class="table table-striped">
-                                      <thead>
-                                          <tr>
-                                              <th>#</th>
-                                              <th>Ranking Tier Name</th>
-                                              <th>Tier Description</th>
-                                              <th>Username</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                          <tr>
-                                              <td>1</td>
-                                              <td>eco-lover</td>
-                                              <td>A+</td>
-                                              <td>@mdo</td>
-                                          </tr>
-                                          <tr>
-                                              <td>2</td>
-                                              <td>eco-friendly</td>
-                                              <td>B</td>
-                                              <td>@fat</td>
-                                          </tr>
-                                          <tr>
-                                              <td>3</td>
-                                              <td>eco-noob</td>
-                                              <td>C</td>
-                                              <td>@twitter</td>
-                                          </tr>
-                                          <tr>
-                                              <td>4</td>
-                                              <td>eco-terrorist</td>
-                                              <td>C</td>
-                                              <td>@twitter</td>
-                                          </tr>
-                                      </tbody>
-                                  </table>
+                      <div class="col-lg-8">
+                          <div class="panel panel-default">
+                              <div class="panel-heading">
+                                  <i class="fa fa-power-off fa-fw"></i> Choose Your Current Mode
                               </div>
-                              <!-- /.table-responsive -->
+                              <!-- /.panel-heading -->
+                              <div class="panel-body">
+                                      <p class= "help-block">ManualMode Description: lorem ipsum caliente</p>
+                                      <input type="checkbox" id='mode-toggle-manual' checked data-toggle="toggle">
+                                      <label for="mode-toggle-manual">ManualMode</label>
+                                      <br />
+                                      <p class= "help-block">ForgottenMode Description: lorem ipsum caliente</p>
+                                      <input type="checkbox" id='mode-toggle-forgotten' checked data-toggle="toggle">
+                                      <label for="mode-toggle-forgotten">ForgottenDevicesMode</label>
+                                      <br />
+                                      <p class= "help-block">BudgetMode Description: lorem ipsum caliente</p>
+                                      <input type="checkbox" id='mode-toggle-budget' checked data-toggle="toggle">
+                                      <label for="mode-toggle-budget">BudgetMode</label>
+                                      <br />
+                                      <p class= "help-block">EcoMode Description: lorem ipsum caliente</p>
+                                      <input type="checkbox" id='mode-toggle-eco' checked data-toggle="toggle">
+                                      <label for="mode-toggle-eco">EcoMode</label>
+                                      <br />
+                              </div>
+                              <!-- /.panel-body -->
                           </div>
-                          <!-- /.panel-body -->
+                          <!-- /.panel -->
                       </div>
-                      <!-- /.panel -->
+                      <!-- /.col-lg-8 -->
                   </div>
                   <!-- /.row -->
+
+                  <div class="row">
+                    Your Ranking: Eco-Terrorist
+                  </div>
+                  <!-- /.row -->
+
+
+                                    <div class="row">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Eco Ranking Descriptions
+                                            </div>
+                                            <!-- /.panel-heading -->
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Ranking Tier Name</th>
+                                                                <th>Tier Description</th>
+                                                                <th>Username</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>eco-lover</td>
+                                                                <td>A+</td>
+                                                                <td>@mdo</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>eco-friendly</td>
+                                                                <td>B</td>
+                                                                <td>@fat</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>eco-noob</td>
+                                                                <td>C</td>
+                                                                <td>@twitter</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td>eco-terrorist</td>
+                                                                <td>C</td>
+                                                                <td>@twitter</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- /.table-responsive -->
+                                            </div>
+                                            <!-- /.panel-body -->
+                                        </div>
+                                        <!-- /.panel -->
+                                    </div>
+                                    <!-- /.row -->
 
             </div>
             <!-- /#page-wrapper -->
@@ -1558,6 +1598,7 @@
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <!--<script src="https://code.highcharts.com/modules/series-label.js"></script>-->
 
     <!-- DateTimePicker Plugin JavaScript -->
