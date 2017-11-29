@@ -84,7 +84,7 @@ function getPoints( the_network_id, the_object_id, the_stream_id, callback ){
 				var most_recent_value = response.points[0].value
 				//console.log("Most recent value: "+most_recent_value);
 				//console.log("Number of points retrieved: "+num_points);
-				console.log(response.points)
+				//console.log(response.points)
 				callback( response.points );
 			}
 		},
