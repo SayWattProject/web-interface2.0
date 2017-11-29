@@ -67,11 +67,14 @@ else:
 stream_id = "data-curr-sens-one"
 stream_id1 = "data-curr-sens-two"
 stream_id2 = "data-curr-sens-three"
+stream_id3 = "data-curr-sens-all"
+
 object_id = "OBJ-CURR-SENSORS"
 print("Start sending random points (Ctrl+C to stop)")
 endpoint = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id +'/points'
 endpoint1 = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id1 +'/points'
 endpoint2 = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id2 +'/points'
+endpoint3 = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id3 +'/points'
 
 def send_a_request(endpoint):
     query = {
@@ -91,4 +94,5 @@ while True:
     send_a_request(endpoint)
     send_a_request(endpoint1)
     send_a_request(endpoint2)
+    send_a_request(endpoint3)
     time.sleep(2)

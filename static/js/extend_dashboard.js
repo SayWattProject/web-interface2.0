@@ -162,7 +162,7 @@ var report_plot_options = {
 	},
 	yAxis: {
 		title: {
-			text: 'Temperature (˚F)'
+			text: 'Watts (W)'
 		}
 	},
 };
@@ -171,8 +171,17 @@ var report_plot_options = {
 
 // from: http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/dynamic-master-detail/
 function energyusagedashboard(){
-	$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
-    var detailChart;
+	obj_name = "OBJ-CURR-SENSORS"
+	stream_name = "data-curr-sens-three"
+	getPoints('local',obj_name,stream_name, function (data) {
+		console.log(data);
+		for (i=0; i<data.length; i++){
+			at = data[i].at;
+			val = data[i].val;
+			tmp[i]= [at, val];
+		}
+		data = tmp;
+		var detailChart;
 
     // create the detail chart
     function createDetail(masterChart) {
@@ -424,7 +433,7 @@ function energyusagecomponentstream(container_name,obj_name,stream_name){
 	}, 1000);
 }
 
-energyusagedashboard() //load master detail
+//energyusagedashboard() //load master detail
 energyusagecomponentstream('containerEnergyUsageComponent1','OBJ-CURR-SENSORS','data-curr-sens-one') //load one stream
 energyusagecomponentstream('containerEnergyUsageComponent2','OBJ-CURR-SENSORS','data-curr-sens-two') //load another stream
 energyusagecomponentstream('containerEnergyUsageComponent3','OBJ-CURR-SENSORS','data-curr-sens-three') //load another stream
@@ -523,7 +532,7 @@ function loadgoalschart(){
     }],
     yAxis: [{ // Primary yAxis
         labels: {
-            format: '{value}°C',
+            format: '{value} W',
             style: {
                 color: Highcharts.getOptions().colors[2]
             }
