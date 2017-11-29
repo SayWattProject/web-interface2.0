@@ -168,7 +168,7 @@ var report_plot_options = {
 };
 
 
-
+/*
 // from: http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/dynamic-master-detail/
 function energyusagedashboard(){
 	obj_name = "OBJ-CURR-SENSORS"
@@ -415,6 +415,7 @@ function energyusagedashboard(){
     createMaster();
 });
 } //end energyusagedashboard() def
+*/
 
 
 //TODO - need to make this usable for different streams and different container names
