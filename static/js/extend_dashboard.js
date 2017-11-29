@@ -446,72 +446,65 @@ energyusagecomponentstream('containerEnergyUsageComponent3','OBJ-CURR-SENSORS','
 // from: http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/polar-wind-rose/
 function loadco2chart() {
 	console.log('co2 called');
-	// Parse the data from an inline table using the Highcharts Data plugin
-	const container_name = 'containerco2impact';
-	//var plot = $('#'+container_name);
-	var plot = Highcharts.chart(container_name, {
-	    data: {
-	        table: 'freq',
-	        startRow: 1,
-	        endRow: 17,
-	        endColumn: 7
-	    },
-
+	// // Parse the data from an inline table using the Highcharts Data plugin
+	// const container_name = 'containerco2impact';
+	// //var plot = $('#'+container_name);
+	// // Build the chart
+	Highcharts.chart('containerco2impact', {
 	    chart: {
-	        polar: true,
-	        type: 'column'
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: false,
+	        type: 'pie'
 	    },
-
 	    title: {
-	        text: 'Wind rose for South Shore Met Station, Oregon'
+	        text: 'CAISO Energy Cleanliness Makeup - WattTime'
 	    },
-
-	    subtitle: {
-	        text: 'Source: or.water.usgs.gov'
-	    },
-
-	    pane: {
-	        size: '85%'
-	    },
-
-	    legend: {
-	        align: 'right',
-	        verticalAlign: 'top',
-	        y: 100,
-	        layout: 'vertical'
-	    },
-
-	    xAxis: {
-	        tickmarkPlacement: 'on'
-	    },
-
-	    yAxis: {
-	        min: 0,
-	        endOnTick: false,
-	        showLastLabel: true,
-	        title: {
-	            text: 'Frequency (%)'
-	        },
-	        labels: {
-	            formatter: function () {
-	                return this.value + '%';
-	            }
-	        },
-	        reversedStacks: false
-	    },
-
 	    tooltip: {
-	        valueSuffix: '%'
+	        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 	    },
-
 	    plotOptions: {
-	        series: {
-	            stacking: 'normal',
-	            shadow: false,
-	            groupPadding: 0,
-	            pointPlacement: 'on'
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            dataLabels: {
+	                enabled: false
+	            },
+	            showInLegend: true
 	        }
-	    }
+	    },
+	    series: [{
+	        name: 'Source',
+	        colorByPoint: true,
+	        data: [{
+	        name: 'wind',
+	        y: 4495.7
+	    }, {
+	        name: 'renewable',
+	        y: 613.5
+	    }, {
+	        name: 'other',
+	        y: 35.6
+	    }, {
+	        name: 'oil',
+	        y: 212.8
+	    }, {
+	        name: 'nuclear',
+	        y: 34728.6
+	    }, {
+	        name: 'thermo',
+	        y: 34.2
+	    }, {
+	        name: 'hydro',
+	        y: 862.8
+	    }, {
+	        name: 'natgas',
+	        y: 23304.8
+	    }, {
+	        name: 'coal',
+	        y: 24541.8
+	    }]
+	    }]
 	});
 }
 
