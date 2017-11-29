@@ -61,7 +61,7 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <i class="fa fa-plug fa-fw"></i> Your electricity will be much cleaner in one hour, can we turn some things off for you until then?
                                     <span class="pull-right text-muted small">4 minutes ago</span>
                                 </div>
                             </a>
@@ -70,8 +70,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Current Sensors
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                    <i class="fa fa-plug fa-fw"></i> The cost is high right now, Can we turn some things off for you?
+                                    <span class="pull-right text-muted small"> 14 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -79,8 +79,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Goal Achieved
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-plug fa-fw"></i> Did you leave some devices on?
+                                    <span class="pull-right text-muted small">18 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -88,8 +88,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-tasks fa-fw"></i> Actuation Recommended
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-tasks fa-fw"></i> 1 New TPLink Added
+                                    <span class="pull-right text-muted small">1428 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -97,8 +97,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted anotha time
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-tasks fa-fw"></i> 3 New Current Sensors Added
+                                    <span class="pull-right text-muted small">1440 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -484,9 +484,45 @@
                 </div>
                 <!-- /.row -->
 
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Energy Pricing Details
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>When</th>
+                                            <th>Cost Per kWh</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Off Peak</td>
+                                            <td>Anytime not 4-9pm</td>
+                                            <td>$0.24</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Peak</td>
+                                            <td>4-9pm M-F</td>
+                                            <td>$0.36</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.row -->
 
                 <div class="row">
-                  blue: watts v. time, grey: wattsxprice @ intervals of xyz v. time, green: tariff prices
                   <div id="containerEnergyPrices"></div>
                 </div>
                 <!-- /.row -->
@@ -578,46 +614,46 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>leaf_image</td>
+                                            <td><i class="fa fa-leaf fa-fw"></i>Leaf Earned</td>
                                             <td>Monday</td>
-                                            <td>18kWh</td>
-                                            <td>17.1kWh</td>
+                                            <td>25.65 kWh</td>
+                                            <td>25.5 kWh</td>
                                         </tr>
                                         <tr>
-                                            <td>leaf_image</td>
+                                            <td><i class="fa fa-industry fa-fw"></i>Smokestack Earned</td>
                                             <td>Tuesday</td>
-                                            <td>18kWh</td>
-                                            <td>17.1kWh</td>
+                                            <td>27.27 kWh</td>
+                                            <td>29 kWh</td>
                                         </tr>
                                         <tr>
-                                            <td>leaf_image</td>
+                                            <td><i class="fa fa-leaf fa-fw"></i>Leaf Earned</td>
                                             <td>Wednesday</td>
-                                            <td>18kWh</td>
-                                            <td>17.1kWh</td>
+                                            <td>24.48 kWh</td>
+                                            <td>9 kWh</td>
                                         </tr>
                                         <tr>
-                                            <td>smokestack_image</td>
+                                            <td><i class="fa fa-leaf fa-fw"></i>Leaf Earned</td>
                                             <td>Thursday</td>
-                                            <td>18kWh</td>
-                                            <td>19kWh</td>
+                                            <td>23.31 kWh</td>
+                                            <td>0 kWh</td>
                                         </tr>
                                         <tr>
-                                            <td>smokestack_image</td>
+                                            <td><i class="fa fa-leaf fa-fw"></i>Leaf Earned</td>
                                             <td>Friday</td>
-                                            <td>18kWh</td>
-                                            <td>17.1kWh</td>
+                                            <td>26.10 kWh</td>
+                                            <td>0 kWh</td>
                                         </tr>
                                         <tr>
-                                            <td>leaf_image</td>
+                                            <td><i class="fa fa-leaf fa-fw"></i>Leaf Earned</td>
                                             <td>Saturday</td>
-                                            <td>18kWh</td>
-                                            <td>20kWh</td>
+                                            <td>23.49 kWh</td>
+                                            <td>0 kWh</td>
                                         </tr>
                                         <tr>
-                                            <td>smokestack_image</td>
+                                            <td><i class="fa fa-leaf fa-fw"></i>Leaf Earned</td>
                                             <td>Sunday</td>
-                                            <td>18kWh</td>
-                                            <td>25kWh</td>
+                                            <td>23.13 kWh</td>
+                                            <td>0 kWh</td>
                                         </tr>
                                     </tbody>
                                 </table>
