@@ -38,7 +38,7 @@ base = 'http://127.0.0.1:5000'
 network_id = 'local'
 header = {}
 
-
+"""
 query = {
     'object-name': 'Test Object'
 }
@@ -63,13 +63,19 @@ if resp['stream-code'] == 201:
 else:
     print('Create stream test-stream: error')
     print( response.text )
-
-
+"""
+stream_id = "data-curr-sens-one"
+stream_id1 = "data-curr-sens-two"
+stream_id2 = "data-curr-sens-three"
+object_id = "OBJ-CURR-SENSORS"
 print("Start sending random points (Ctrl+C to stop)")
-endpoint = '/networks/local/objects/test-object/streams/test-stream/points'
-while True:
+endpoint = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id +'/points'
+endpoint1 = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id1 +'/points'
+endpoint2 = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id2 +'/points'
+
+def send_a_request(endpoint):
     query = {
-        'points-value': random.randint(0, 10),
+        'points-value': random.randint(90, 1000),
         'points-at': datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     }
     response = requests.request('POST', base + endpoint, params=query, headers=header, timeout=120 )
@@ -79,4 +85,10 @@ while True:
     else:
         print( 'Update test-stream points: error')
         print( response.text )
+
+
+while True:
+    send_a_request(endpoint)
+    send_a_request(endpoint1)
+    send_a_request(endpoint2)
     time.sleep(2)

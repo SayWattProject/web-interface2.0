@@ -84,6 +84,7 @@ function getPoints( the_network_id, the_object_id, the_stream_id, callback ){
 				var most_recent_value = response.points[0].value
 				//console.log("Most recent value: "+most_recent_value);
 				//console.log("Number of points retrieved: "+num_points);
+				console.log(response.points)
 				callback( response.points );
 			}
 		},
@@ -201,7 +202,7 @@ function energyusagedashboard(){
                 enabled: false
             },
             title: {
-                text: 'Building Composit Energy Usage'
+                text: 'Building Composite Energy Usage'
             },
             subtitle: {
                 text: 'Select an \'timebox\' by dragging across the lower chart'
@@ -407,10 +408,10 @@ function energyusagedashboard(){
 
 
 //TODO - need to make this usable for different streams and different container names
-function energyusagecomponentstream(container_name){
+function energyusagecomponentstream(container_name,obj_name,stream_name){
 	var plotCalls = 0;
 	var plotTimer = setInterval( function(){
-		getPoints('local','arduino-temp','temp-stream', function(points){
+		getPoints('local',obj_name,stream_name, function(points){
 			//console.log( "The points request was successful!" );
 			loadPlot( points, container_name );
 		});
@@ -424,8 +425,9 @@ function energyusagecomponentstream(container_name){
 }
 
 energyusagedashboard() //load master detail
-energyusagecomponentstream('containerEnergyUsageComponent1') //load one stream
-energyusagecomponentstream('containerEnergyUsageComponent2') //load another stream
+energyusagecomponentstream('containerEnergyUsageComponent1','OBJ-CURR-SENSORS','data-curr-sens-one') //load one stream
+energyusagecomponentstream('containerEnergyUsageComponent2','OBJ-CURR-SENSORS','data-curr-sens-two') //load another stream
+energyusagecomponentstream('containerEnergyUsageComponent3','OBJ-CURR-SENSORS','data-curr-sens-three') //load another stream
 
 
 
@@ -1018,9 +1020,9 @@ loadenergypriceschart()
 
 
 console.log("Adding toggle functionality");
-registerHandlers();
+//registerHandlers();
 
-function registerHandlers() {
+//function registerHandlers() {
 // https://stackoverflow.com/questions/9180087/how-to-handle-change-of-checkbox-using-jquery
 
 $('#btn-1').click(function () {
@@ -1153,7 +1155,6 @@ $('input[type="checkbox"]').change(function () {
 		}
 });
 
-$('input[type="checkbox"]').bind('click', function(){
-	alert("OK");
-})
-}
+// $('input[type="checkbox"]').bind('click', function(){
+// 	alert("OK");
+// })
