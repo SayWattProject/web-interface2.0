@@ -34,7 +34,9 @@ import random
 import time
 import datetime
 
-base = 'http://127.0.0.1:5000'
+#base = 'http://127.0.0.1:5000'
+base = 'http://ce186apiproxy.azurewebsites.net'
+#base = 'http://13.92.90.127:8000'
 network_id = 'local'
 header = {}
 
@@ -75,6 +77,8 @@ endpoint = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id +'/poin
 endpoint1 = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id1 +'/points'
 endpoint2 = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id2 +'/points'
 endpoint3 = '/networks/local/objects/'+ object_id +'/streams/'+ stream_id3 +'/points'
+endpoint4 = '/networks/local/objects/'+ 'OBJ-PSWITCH-TAIL' +'/streams/'+ 'actuate-pswitch-tail' +'/points'
+
 
 def send_a_request(endpoint):
     query = {
@@ -90,9 +94,12 @@ def send_a_request(endpoint):
         print( response.text )
 
 
+"""
 while True:
     send_a_request(endpoint)
     send_a_request(endpoint1)
     send_a_request(endpoint2)
     send_a_request(endpoint3)
     time.sleep(2)
+    """
+send_a_request(endpoint4)

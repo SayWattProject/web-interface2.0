@@ -175,6 +175,7 @@ function energyusagedashboard(){
 	stream_name = "data-curr-sens-three"
 	getPoints('local',obj_name,stream_name, function (data) {
 		console.log(data);
+		tmp = {};
 		for (i=0; i<data.length; i++){
 			at = data[i].at;
 			val = data[i].val;
@@ -434,6 +435,7 @@ function energyusagecomponentstream(container_name,obj_name,stream_name){
 }
 
 //energyusagedashboard() //load master detail
+energyusagecomponentstream('containerEnergyUsageComposite','OBJ-CURR-SENSORS','data-curr-sens-all')
 energyusagecomponentstream('containerEnergyUsageComponent1','OBJ-CURR-SENSORS','data-curr-sens-one') //load one stream
 energyusagecomponentstream('containerEnergyUsageComponent2','OBJ-CURR-SENSORS','data-curr-sens-two') //load another stream
 energyusagecomponentstream('containerEnergyUsageComponent3','OBJ-CURR-SENSORS','data-curr-sens-three') //load another stream
